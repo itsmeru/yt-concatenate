@@ -1,4 +1,4 @@
-from pipeline.step.step import StepException
+from pipeline.steps.step import StepException
 
 
 class Pipeline:

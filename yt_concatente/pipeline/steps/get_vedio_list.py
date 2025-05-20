@@ -1,7 +1,7 @@
 import urllib.request
 import json
 
-from pipeline.step.step import Step
+from pipeline.steps.step import Step
 from settings import API_KEY
 
 
