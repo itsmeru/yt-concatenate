@@ -24,6 +24,10 @@ class Utils:
         path = yt.caption_filepath
         return os.path.exists(path) and os.path.getsize(path) > 0
 
+    def video_file_exist(self, yt):
+        filepath = yt.video_filepath
+        return os.path.exists(filepath) and os.path.getsize(filepath) > 0
+
     @staticmethod
     def convert_to_srt(vtt_file):
         """Download VTT and turn into SRT content"""
