@@ -12,13 +12,11 @@ from pipeline.steps.edit_video import EditVideo
 from pipeline.steps.postflight import Postflight
 from utils import Utils
 
-CHANNEL_ID = "UC_mYaQAE6-71rjSN6CeCA-g"
 
-
-# @click.command()
-# @click.option('--channel_id', required=True, help='YouTube 頻道ID')
-# @click.option('--search_word', required=True, help='要尋找的關鍵字')
-def main():
+@click.command()
+@click.option('-c', '--channel_id', type=str, required=True, help='YouTube 頻道ID')
+@click.option('-w', '--search_word', type=str, required=True, help='要尋找的關鍵字')
+def main(channel_id: str, search_word: str):
     steps = [
         Preflight(),
         GetVedioList(),
@@ -32,9 +30,11 @@ def main():
     ]
 
     inputs = {
-        'channel_id': CHANNEL_ID,
-        'search_word': 'problem',
+        'channel_id': channel_id,
+        'search_word': search_word,
+        'vedio_limit': 200,
         'limit': 20,
+        'cleanup': True,
     }
 
     utils = Utils()
