@@ -8,7 +8,7 @@ from utils import Utils
 
 class GetVedioList(Step):
     def process(self, data: list, inputs: dict, utils: Utils) -> list:
-
+        self.logger.info('Start getting video list')
         channel_id = inputs['channel_id']
 
         if utils.video_list_file_exist(channel_id):

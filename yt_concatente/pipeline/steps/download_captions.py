@@ -10,6 +10,8 @@ from model.youtube import Youtube
 
 class DownloadCaptions(Step):
     def process(self, data: list, inputs: dict, utils: Utils) -> List[Youtube]:
+        self.logger.info('Start downloading captions')
+
         count = 0
         for yt in data:
             count += 1
@@ -40,13 +42,13 @@ class DownloadCaptions(Step):
 
             except (KeyError, AttributeError, yt_dlp.utils.DownloadError) as e:
                 if "Sign in to confirm your age" in str(e):
-                    print(f'Age restriction error for {yt.url}')
+                    self.logger.error(f'Age restriction error for {yt.url}')
                 else:
-                    print('Error when download caption url for', yt.url)
+                    self.logger.error('Error when download caption url for', yt.url)
                 continue
             except Exception as e:
-                print(f"Error type: {type(e)}")
-                print(f"Error message: {str(e)}")
+                self.logger.error(f"Error type: {type(e)}")
+                self.logger.error(f"Error message: {str(e)}")
                 continue
 
         return data

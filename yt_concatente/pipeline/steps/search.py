@@ -7,6 +7,8 @@ from model.found import Found
 
 class Search(Step):
     def process(self, data: list, inputs: dict, utils: Utils) -> List[Found]:
+        self.logger.info('Start searching key word')
+
         search_word = inputs['search_word']
 
         found = []

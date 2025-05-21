@@ -6,6 +6,8 @@ from pipeline.steps.step import Step
 
 class EditVideo(Step):
     def process(self, data: list, inputs: dict, utils: Utils) -> None:
+        self.logger.info('Start editting videos')
+
         clips = []
         for found in data:
             if not utils.video_file_exist(found.yt):

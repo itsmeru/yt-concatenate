@@ -4,4 +4,4 @@ from utils import Utils
 
 class Postflight(Step):
     def process(self, data: list, inputs: dict, utils: Utils):
-        print('In postflight')
+        self.logger.info('In postflight')

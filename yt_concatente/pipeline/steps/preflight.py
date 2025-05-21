@@ -4,5 +4,5 @@ from utils import Utils
 
 class Preflight(Step):
     def process(self, data: list, inputs: dict, utils: Utils):
-        print('In preflight')
+        self.logger.info('In preflight')
         utils.create_dir()

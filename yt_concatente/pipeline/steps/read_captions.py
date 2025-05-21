@@ -6,6 +6,8 @@ from model.youtube import Youtube
 
 class ReadCaptions(Step):
     def process(self, data: list, inputs: dict, utils: Utils) -> List[Youtube]:
+        self.logger.info('Start reading captions')
+
         for yt in data:
             if not utils.caption_file_exists(yt):
                 continue

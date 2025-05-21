@@ -9,6 +9,8 @@ from settings import VEDIOS_DIR
 
 class DownloadVideos(Step):
     def process(self, data: list, inputs: dict, utils: Utils) -> List[Youtube]:
+        self.logger.info('Start downloading videos')
+
         yt_set = set([found.yt for found in data])
         for yt in yt_set:
             url = yt.url
@@ -21,13 +23,13 @@ class DownloadVideos(Step):
                 'nooverwrites': True,
             }
             if utils.video_file_exist(yt):
-                print(f'found existing video file for {url}, skipping')
+                self.logger.info(f'found existing video file for {url}, skipping')
                 continue
             try:
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([url])
-                print(f"Successfully downloaded: {url}")
+                self.logger.info(f"Successfully downloaded: {url}")
             except yt_dlp.utils.DownloadError as e:
-                print(f"Error downloading {url}: {str(e)}")
+                self.logger.error(f"Error downloading {url}: {str(e)}")
 
         return data

@@ -11,6 +11,7 @@ from pipeline.steps.download_videos import DownloadVideos
 from pipeline.steps.edit_video import EditVideo
 from pipeline.steps.postflight import Postflight
 from utils import Utils
+from log import log
 
 
 @click.command()
@@ -43,4 +44,5 @@ def main(channel_id: str, search_word: str):
 
 
 if __name__ == '__main__':
+    log()
     main()
