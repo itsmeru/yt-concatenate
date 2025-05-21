@@ -43,7 +43,7 @@ YT_KEY = "您的API金鑰"
 python main.py --help
 
 # 範例
-python main.py -c UC2mKA8JTOCeodl9bEK7w42Q --search_word terrible
+python main.py -c UC2mKA8JTOCeodl9bEK7w42Q --search_word like
 ```
 
 ### 查詢YouTube ID
