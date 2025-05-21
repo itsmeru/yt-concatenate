@@ -32,7 +32,7 @@ def main(channel_id: str, search_word: str):
     inputs = {
         'channel_id': channel_id,
         'search_word': search_word,
-        'vedio_limit': 200,
+        'vedio_limit': 100,
         'limit': 20,
         'cleanup': True,
     }

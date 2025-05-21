@@ -8,6 +8,7 @@ from utils import Utils
 
 class GetVedioList(Step):
     def process(self, data: list, inputs: dict, utils: Utils) -> list:
+
         channel_id = inputs['channel_id']
 
         if utils.video_list_file_exist(channel_id):
@@ -27,12 +28,13 @@ class GetVedioList(Step):
             for i in resp['items']:
                 if i['id']['kind'] == "youtube#video":
                     video_links.append(base_video_url + i['id']['videoId'])
-                    if len(video_links) >= inputs['vedio_limit']:
-                        return video_links
             try:
                 next_page_token = resp['nextPageToken']
                 url = first_url + '&pageToken={}'.format(next_page_token)
             except KeyError:
+                break
+
+            if len(video_links) >= inputs['vedio_limit']:
                 break
 
         self.write_to_file(video_links, utils.get_video_list_filepath(channel_id))
