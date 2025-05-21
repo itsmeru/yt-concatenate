@@ -16,7 +16,7 @@ class DownloadCaptions(Step):
             if count == 100:
                 break
             if utils.caption_file_exists(yt):
-                print('found exits caption file')
+                # print('found exits caption file')
                 continue
 
             ydl_opts = {

@@ -8,16 +8,17 @@ from pipeline.steps.download_captions import DownloadCaptions
 from pipeline.steps.read_captions import ReadCaptions
 from pipeline.steps.search import Search
 from pipeline.steps.download_videos import DownloadVideos
+from pipeline.steps.edit_video import EditVideo
 from pipeline.steps.postflight import Postflight
 from utils import Utils
 
 CHANNEL_ID = "UC_mYaQAE6-71rjSN6CeCA-g"
 
 
-@click.command()
-@click.option('--channel_id', required=True, help='YouTube 頻道ID')
-@click.option('--search_word', required=True, help='要尋找的關鍵字')
-def main(channel_id: str, search_word: str):
+# @click.command()
+# @click.option('--channel_id', required=True, help='YouTube 頻道ID')
+# @click.option('--search_word', required=True, help='要尋找的關鍵字')
+def main():
     steps = [
         Preflight(),
         GetVedioList(),
@@ -26,12 +27,14 @@ def main(channel_id: str, search_word: str):
         ReadCaptions(),
         Search(),
         DownloadVideos(),
+        EditVideo(),
         Postflight(),
     ]
 
     inputs = {
         'channel_id': CHANNEL_ID,
         'search_word': 'problem',
+        'limit': 20,
     }
 
     utils = Utils()
