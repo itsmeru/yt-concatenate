@@ -1,17 +1,17 @@
-import os
-
+from typing import List
 from pipeline.steps.step import Step
 from utils import Utils
+from model.youtube import Youtube
 
 
 class ReadCaptions(Step):
-    def process(self, data: list, inputs: dict, utils: Utils):
-        for url in data:
-            if not utils.caption_file_exists(url):
+    def process(self, data: list, inputs: dict, utils: Utils) -> List[Youtube]:
+        for yt in data:
+            if not utils.caption_file_exists(yt):
                 continue
 
             captions = {}
-            with open(utils.get_caption_filepath(url), "r", encoding="utf-8") as f:
+            with open(yt.caption_filepath, "r", encoding="utf-8") as f:
                 time_line = False
                 time = None
                 caption = None
@@ -25,6 +25,6 @@ class ReadCaptions(Step):
                         caption = line
                         captions[caption] = time
                         time_line = False
-            print(captions)
-            break
+            yt.captions = captions
+
         return data
